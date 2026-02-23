@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   cache:
     image: valkey/valkey:9.0.2
@@ -24,7 +25,6 @@ services:
     volumes:
       - weblate-data:/app/data
       - weblate-cache:/app/cache
-    # Así es como lo tienes en Odoo y es como Dokploy lo entiende mejor:
     environment:
       - WEBLATE_SITE_DOMAIN=${WEBLATE_SITE_DOMAIN}
       - WEBLATE_SECRET_KEY=${WEBLATE_SECRET_KEY}
