@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   cache:
     image: valkey/valkey:9.0.2
@@ -16,20 +17,21 @@ services:
     restart: always
 
   weblate:
-    image: weblate/weblate
+    image: weblate/weblate:latest
     depends_on:
       - cache
       - database
     volumes:
       - weblate-data:/app/data
       - weblate-cache:/app/cache
+    # IMPORTANTE: Aquí mapeamos lo que Dokploy lee de tu pestaña Environment
     environment:
       - WEBLATE_SITE_DOMAIN=${WEBLATE_SITE_DOMAIN}
       - WEBLATE_SECRET_KEY=${WEBLATE_SECRET_KEY}
       - WEBLATE_ADMIN_PASSWORD=${WEBLATE_ADMIN_PASSWORD}
       - WEBLATE_EMAIL_HOST=${WEBLATE_EMAIL_HOST}
-      - WEBLATE_EMAIL_HOST_USER=${WEBLATE_EMAIL_HOST_USER}
-      - WEBLATE_EMAIL_HOST_PASSWORD=${WEBLATE_EMAIL_HOST_PASSWORD}
+      - WEBLATE_EMAIL_HOST_USER=${WEBLATE_EMAIL_USER}
+      - WEBLATE_EMAIL_HOST_PASSWORD=${WEBLATE_EMAIL_PASSWORD}
       - WEBLATE_EMAIL_PORT=${WEBLATE_EMAIL_PORT}
       - WEBLATE_EMAIL_TLS=${WEBLATE_EMAIL_TLS}
       - WEBLATE_HTTPS_PROXY=${WEBLATE_HTTPS_PROXY}
