@@ -24,18 +24,18 @@ services:
       - weblate-data:/app/data
       - weblate-cache:/app/cache
     environment:
-      # Variables esenciales extraídas de tus archivos de ejemplo
       - WEBLATE_SITE_DOMAIN=${WEBLATE_SITE_DOMAIN}
       - WEBLATE_SECRET_KEY=${WEBLATE_SECRET_KEY}
       - WEBLATE_ADMIN_PASSWORD=${WEBLATE_ADMIN_PASSWORD}
+      - WEBLATE_EMAIL_HOST=${WEBLATE_EMAIL_HOST}
+      - WEBLATE_EMAIL_HOST_USER=${WEBLATE_EMAIL_HOST_USER}
+      - WEBLATE_EMAIL_HOST_PASSWORD=${WEBLATE_EMAIL_HOST_PASSWORD}
+      - WEBLATE_EMAIL_PORT=${WEBLATE_EMAIL_PORT}
+      - WEBLATE_EMAIL_TLS=${WEBLATE_EMAIL_TLS}
+      - WEBLATE_HTTPS_PROXY=${WEBLATE_HTTPS_PROXY}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_HOST=database
       - REDIS_HOST=cache
-      # Estas 3 variables son las que hacían especial al archivo HTTPS
-      # Son vitales para que Dokploy y Weblate se entiendan con el SSL
-      - WEBLATE_ENABLE_HTTPS=1
-      - WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR
-      - WEBLATE_SECURE_PROXY_SSL_HEADER=HTTP_X_FORWARDED_PROTO,https
     restart: always
 
 volumes:
