@@ -24,7 +24,7 @@ services:
     volumes:
       - weblate-data:/app/data
       - weblate-cache:/app/cache
-    # IMPORTANTE: Aquí mapeamos lo que Dokploy lee de tu pestaña Environment
+    # IMPORTANTE: Esta sección permite que Dokploy pase tus variables al contenedor
     environment:
       - WEBLATE_SITE_DOMAIN=${WEBLATE_SITE_DOMAIN}
       - WEBLATE_SECRET_KEY=${WEBLATE_SECRET_KEY}
